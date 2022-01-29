@@ -48,6 +48,8 @@ function s:runner.run(commands, input, session) abort
     let s:wins[self.config.name] += [win_getid()]
   endif
   let self._jobid = termopen(cmd_arg, options)
+  " NOTE: This is workaround for changing directory when runner was executed
+  exe "cd -"
   setlocal bufhidden=wipe
   if !self.config.into
     call win_gotoid(prev_winid)
